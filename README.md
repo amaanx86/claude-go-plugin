@@ -1,5 +1,9 @@
 # claude-go-plugin
 
+<p align="center">
+  <img src=".github/assets/two-gopher-flying-gopher-plane.png" alt="Two gophers piloting a gopher-shaped plane" width="360">
+</p>
+
 A [Claude Code](https://claude.com/claude-code) plugin for Go development: an agent plus four modular skills covering idiomatic Go, CLI/DevOps tooling, microservices, and testing. Grounded in the [Google Go Style Guide](https://github.com/google/styleguide/tree/gh-pages/go), the [Uber Go Style Guide](https://github.com/uber-go/guide), the [Thanos coding style guide](https://github.com/thanos-io/thanos/blob/main/docs/contributing/coding-style-guide.md), and the [Kubernetes coding conventions](https://www.kubernetes.dev/docs/guide/coding-convention/).
 
 ## What's included
