@@ -1,0 +1,47 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON manifests
+        run: |
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json hooks/hooks.json; do
+            jq empty "$f" && echo "ok: $f"
+          done
+
+      - name: Check version consistency
+        run: |
+          manifest_version=$(jq -r '.version' .claude-plugin/plugin.json)
+          # Before the first release, changes sit under [Unreleased]; accept that.
+          if grep -q "\[$manifest_version\]" CHANGELOG.md; then
+            echo "ok: version $manifest_version present in CHANGELOG.md"
+          elif grep -q "\[Unreleased\]" CHANGELOG.md; then
+            echo "ok: no release yet, changes tracked under [Unreleased]"
+          else
+            echo "CHANGELOG.md has neither an entry for $manifest_version nor an [Unreleased] section" >&2
+            exit 1
+          fi
+
+      - name: Shellcheck hook scripts
+        run: |
+          sudo apt-get update && sudo apt-get install -y shellcheck
+          shellcheck scripts/*.sh
+
+      - name: Syntax-check hook scripts
+        run: bash -n scripts/go-format.sh
+
+      - name: Assert hook scripts are executable
+        run: |
+          for f in scripts/*.sh; do
+            test -x "$f" || { echo "$f is not executable" >&2; exit 1; }
+          done
