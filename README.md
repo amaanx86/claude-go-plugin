@@ -29,14 +29,37 @@ The two compose cleanly because skills are namespaced (`go:go-testing-patterns` 
 
 ## Install
 
-Add this repo as a marketplace source, then install the plugin:
+Register this repo as a marketplace, then install the `go` plugin from it. Both steps work two ways.
+
+### Inside Claude Code (slash commands)
+
+Run these in the Claude Code prompt:
 
 ```text
 /plugin marketplace add amaanx86/claude-go-plugin
 /plugin install go@claude-go-plugin
 ```
 
-Or, for local development, point Claude Code at a directory checkout of this repo.
+### From the terminal (`claude plugin` CLI)
+
+Run these in your shell (useful for scripting or provisioning a machine):
+
+```bash
+claude plugin marketplace add amaanx86/claude-go-plugin
+claude plugin install go@claude-go-plugin
+```
+
+Either path resolves the plugin by its `name@marketplace` id (`go@claude-go-plugin`), where `go` is the plugin name and `claude-go-plugin` is the marketplace name from `.claude-plugin/marketplace.json`. Verify with `claude plugin list` (or `/plugin` in Claude Code).
+
+To manage it later:
+
+```bash
+claude plugin update go@claude-go-plugin            # pull the latest version
+claude plugin uninstall go@claude-go-plugin         # remove the plugin
+claude plugin marketplace remove claude-go-plugin   # remove the marketplace (by name, not repo path)
+```
+
+For local development, point the marketplace at a directory checkout instead of the GitHub repo: `claude plugin marketplace add ./claude-go-plugin`.
 
 ## Requirements
 
