@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "go",
+  "displayName": "Go",
+  "version": "0.1.0",
+  "description": "Go development patterns, DevOps tooling, microservices, and CLI frameworks",
+  "author": {
+    "name": "Amaan Ul Haq Siddiqui"
+  },
+  "homepage": "https://github.com/amaanx86/claude-go-plugin",
+  "repository": "https://github.com/amaanx86/claude-go-plugin",
+  "license": "Apache-2.0",
+  "keywords": ["go", "golang", "devops", "microservices", "cli", "devtools"]
+}

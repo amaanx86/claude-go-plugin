@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "claude-go-plugin",
+  "owner": {
+    "name": "Amaan Ul Haq Siddiqui"
+  },
+  "metadata": {
+    "description": "Go development plugin: a senior-builder agent, four modular Go skills, and a gofmt/goimports auto-format hook."
+  },
+  "plugins": [
+    {
+      "name": "go",
+      "source": "./",
+      "description": "Go development patterns, DevOps tooling, microservices, and CLI frameworks",
+      "license": "Apache-2.0",
+      "keywords": ["go", "golang", "devops", "microservices", "cli", "devtools"]
+    }
+  ]
+}
